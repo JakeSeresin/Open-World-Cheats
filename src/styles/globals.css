@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS custom properties ────────────────────────────────────────────────── */
+:root {
+  /* Light mode */
+  --color-bg:      #f4f4f4;
+  --color-surface: #ffffff;
+  --color-surface2:#e8e8e8;
+  --color-border:  #d4d4d4;
+  --color-text:    #111111;
+  --color-text2:   #444444;
+  --color-text3:   #777777;
+}
+
+.dark {
+  --color-bg:      #121212;
+  --color-surface: #1a1a1a;
+  --color-surface2:#222222;
+  --color-border:  #2e2e2e;
+  --color-text:    #f0f0f0;
+  --color-text2:   #aaaaaa;
+  --color-text3:   #666666;
+}
+
+/* ── Base reset ───────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Rajdhani', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* ── Font size control ────────────────────────────────────────────────────── */
+[data-font-size='sm'] { font-size: 14px; }
+[data-font-size='md'] { font-size: 16px; }
+[data-font-size='lg'] { font-size: 18px; }
+
+/* ── Skeleton shimmer ─────────────────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface2) 25%,
+    var(--color-surface)  50%,
+    var(--color-surface2) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff6b00;
+}
+
+/* ── Search input clear button (browser default) ─────────────────────────── */
+input[type='search']::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+/* ── Tooltip utility ─────────────────────────────────────────────────────── */
+.owc-tooltip {
+  position: fixed;
+  z-index: 999;
+  pointer-events: none;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  background: #1E1E1E;
+  border: 1px solid rgba(0, 255, 204, 0.35);
+  color: #00FFCC;
+  box-shadow: 0 0 12px rgba(0, 255, 204, 0.2);
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+/* ── Focus ring ──────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid #00FFCC;
+  outline-offset: 2px;
+}
