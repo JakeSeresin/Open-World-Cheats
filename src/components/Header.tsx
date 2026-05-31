@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { FiSun, FiMoon, FiDownload, FiPlus, FiMinus } from 'react-icons/fi';
+import { FiSun, FiMoon, FiPlus, FiMinus } from 'react-icons/fi';
 import type { Theme, FontSize } from '@/lib/storage';
 import { BrandBadge } from './BrandBadge';
 
@@ -10,12 +10,11 @@ interface Props {
   fontSize: FontSize;
   onThemeToggle: () => void;
   onFontSizeChange: (size: FontSize) => void;
-  onExport: () => void;
 }
 
 const FONT_SIZES: FontSize[] = ['sm', 'md', 'lg'];
 
-export function Header({ theme, fontSize, onThemeToggle, onFontSizeChange, onExport }: Props) {
+export function Header({ theme, fontSize, onThemeToggle, onFontSizeChange }: Props) {
   const currentIdx = FONT_SIZES.indexOf(fontSize);
 
   return (
@@ -52,17 +51,7 @@ export function Header({ theme, fontSize, onThemeToggle, onFontSizeChange, onExp
             <FiPlus className="w-3.5 h-3.5" />
           </button>
 
-          {/* Export */}
-          <button
-            onClick={onExport}
-            className="p-1.5 rounded-lg text-text3 hover:text-text1 hover:bg-surface transition-colors"
-            aria-label="Export cheats as .txt"
-            title="Export cheats as open-world-cheats.txt"
-          >
-            <FiDownload className="w-3.5 h-3.5" />
-          </button>
-
-          {/* Theme */}
+          {/* Theme toggle */}
           <button
             onClick={onThemeToggle}
             className="p-1.5 rounded-lg text-text3 hover:text-text1 hover:bg-surface transition-colors"

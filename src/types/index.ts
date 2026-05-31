@@ -1,10 +1,8 @@
 // ─── Game aliases — safe names only, no trademarked strings ─────────────────
-export type GameAlias = 'III' | 'Vice' | 'San' | 'IV' | 'V' | 'LC';
+export type GameAlias = 'III' | 'Vice' | 'San' | 'IV' | 'V' | 'VI' | 'LC';
 
 /**
  * Full descriptive names for tooltips — shown on hover only (client-side JS).
- * These are user-facing helper labels, not printed in any static metadata,
- * manifest, or store listing.
  */
 export const GAME_FULL_NAMES: Record<GameAlias, string> = {
   III:  'Open World III (2001)',
@@ -12,6 +10,7 @@ export const GAME_FULL_NAMES: Record<GameAlias, string> = {
   San:  'Open World: San (2004)',
   IV:   'Open World IV (2008)',
   V:    'Open World V (2013)',
+  VI:   'Open World VI (Coming Soon)',
   LC:   'Open World: LC Stories (2005)',
 };
 
@@ -19,9 +18,9 @@ export const GAME_FULL_NAMES: Record<GameAlias, string> = {
 export type Platform = 'PC' | 'PlayStation' | 'Xbox';
 
 export const PLATFORM_COLORS: Record<Platform, string> = {
-  PC:          '#3B82F6',  // blue
-  PlayStation: '#8B5CF6',  // purple
-  Xbox:        '#22C55E',  // green
+  PC:          '#3B82F6',
+  PlayStation: '#8B5CF6',
+  Xbox:        '#22C55E',
 };
 
 // ─── Category ────────────────────────────────────────────────────────────────

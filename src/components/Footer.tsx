@@ -11,7 +11,7 @@ export function Footer() {
           All game content © their respective owners.
         </p>
         <p className="mt-1 font-mono text-[10px] text-text3/50">
-          v1.0.0 · Built with Next.js
+          WHYZEE
         </p>
       </div>
     </footer>

@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 import type { GameAlias } from '@/types';
 import { GAME_FULL_NAMES } from '@/types';
 
-const GAMES: (GameAlias | 'all')[] = ['all', 'III', 'Vice', 'San', 'IV', 'V', 'LC'];
+// 'VI' is intentionally kept separate so page.tsx can detect it and show "Coming Soon"
+const GAMES: (GameAlias | 'all')[] = ['all', 'III', 'Vice', 'San', 'IV', 'V', 'VI', 'LC'];
 
 interface Props {
   selected: GameAlias | 'all';
@@ -32,6 +33,7 @@ export function GameSelector({ selected, onChange }: Props) {
     <div className="relative flex flex-wrap gap-2">
       {GAMES.map((game) => {
         const isActive = selected === game;
+        const isVI = game === 'VI';
         return (
           <button
             key={game}
@@ -43,23 +45,38 @@ export function GameSelector({ selected, onChange }: Props) {
               'border transition-all duration-150 select-none',
               'focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00FFCC]',
               isActive
-                ? 'bg-accent text-white border-accent shadow-[0_0_12px_rgba(255,107,0,0.4)]'
-                : 'bg-surface text-text2 border-app-border hover:border-accent/50 hover:text-text1',
+                ? isVI
+                  ? 'bg-[#FFD700] text-black border-[#FFD700] shadow-[0_0_12px_rgba(255,215,0,0.4)]'
+                  : 'bg-accent text-white border-accent shadow-[0_0_12px_rgba(255,107,0,0.4)]'
+                : isVI
+                  ? 'bg-surface text-[#FFD700] border-[#FFD700]/40 hover:border-[#FFD700]/80 hover:text-[#FFD700]'
+                  : 'bg-surface text-text2 border-app-border hover:border-accent/50 hover:text-text1',
             ].join(' ')}
           >
             {game === 'all' ? 'All' : game}
-            {/* Info dot indicator for aliased games */}
-            {game !== 'all' && (
+
+            {/* Dot indicator for aliased games */}
+            {game !== 'all' && !isVI && (
               <span
                 className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[#00FFCC] opacity-60"
                 aria-hidden="true"
               />
             )}
+
+            {/* Star indicator for VI */}
+            {isVI && (
+              <span
+                className="absolute -top-1 -right-1 text-[8px] leading-none"
+                aria-hidden="true"
+              >
+                ⭐
+              </span>
+            )}
           </button>
         );
       })}
 
-      {/* Tooltip — rendered via fixed position to escape overflow */}
+      {/* Tooltip — fixed position to escape overflow */}
       {tooltip && (
         <div
           style={{ left: tooltip.x, top: tooltip.y }}
